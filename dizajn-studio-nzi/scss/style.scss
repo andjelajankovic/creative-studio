@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@300;400;700&display=swap');
+
+/**************
+variables
+**************/
+$primary: #7c57b4;
+$secondary: #f1c50e;
+$lightGray: #fdf9f6;
+$white: #fff;
+$bodyFont:'Lato', sans-serif;
+$headings: 'Anton' , sans-serif;
+$fontSize: 16px;
+$transition: .4s ease;
+$padding: 70px 0;
+/***************
+mixins
+***************/
+@mixin flex($justify, $align, $direction, $wrap){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}
+@mixin bgImg($bgPosition, $bgSize, $bgRepeat, $height){
+    background-position:$bgPosition;
+    background-size:$bgSize;
+    background-repeat:$bgRepeat;
+    height: $height;
+}
+@mixin btn{
+    padding: 15px 30px;
+    background: $primary;
+    color: $white;
+    border: none;
+    text-transform: uppercase;
+    font-size: .8rem;
+    margin-top: 20px;
+    &:hover{
+        cursor: pointer;
+        background: $secondary;
+        color: $primary;
+        transition: $transition;
+    }
+}
+/***************
+basic styles
+***************/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+   font-family: $bodyFont;
+   font-size: $fontSize; 
+    line-height: 1.7;
+    background: $lightGray;
+    color: darken($primary,20%);
+}
+h1,h2,h3,h4,h5,h6{
+    color: $primary;
+}
+a{
+    text-decoration: none;
+    &:hover{
+        transition: $transition;
+    }
+}
+.container{
+    width: 90%;
+    margin: auto;
+}
+.headings{
+    font-size: 3rem;
+    &::after{
+        display: block;
+        content: "";
+        height: 3px;
+        width: 50px;
+        background: $primary;
+    }
+}
+.headers {
+    background: $secondary;
+    text-align: center;
+    padding: 10px 0;
+    h1 {
+        font-size: 2rem;
+        text-shadow: 1px 1px $white;
+    }
+    p {
+        color: $primary;
+        font-size: 1.3rem;
+    }
+}
+/************
+nav
+************/
+nav{
+    background: $primary;
+    padding: 5px 0;
+    .container{
+        display: flex;
+        @include flex(space-between, center, row ,wrap);
+        @media(max-width:760px){
+            @include flex(space-between, center, row ,wrap);
+            
+        }
+        .logo{
+            font-family: $headings;
+            color: $lightGray;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            &:hover{
+                color: $secondary;
+            }
+        }
+        ul{
+           @include flex(space-between, center, row ,wrap);
+            li{
+                margin-left: 60px;
+                @media(max-width:760px){
+                    margin: 10px;
+                }
+                a{
+                    color: $lightGray;
+                    text-transform: uppercase;
+                    &:hover{
+                        color: $secondary;
+                    }
+                }
+            }
+        }
+    }
+}
+/****************
+footer
+****************/
+footer{
+    padding: $padding;
+    background: $primary;
+    .container{
+       @include flex(space-between, flex-start, row ,wrap); 
+        color: $lightGray;
+        h3{
+            font-size: 2rem;
+            color: $white;
+            padding-bottom: 20px;
+        }
+        article:nth-child(1){
+            flex: 0 0 65%;
+             @media(max-width:760px){
+                flex: 0 0 63%
+            }
+            
+        }
+        article:nth-child(2){
+           flex: 0 0 15%;
+             @media(max-width:760px){
+                flex: 0 0 50%
+            }
+            a{
+                color: $white;
+                i{
+                    color: $secondary;
+                }
+                &:hover{
+                    color: $secondary;
+                }
+            }
+        }
+        article:nth-child(3){
+            flex: 0 0 20%;
+            @media(max-width:760px){
+                flex: 0 0 50%
+            }
+            li{
+              display: inline-block;
+                a{
+                    color: $secondary;
+                    margin-right: 10px;
+                    font-size: 2rem;
+                    &:hover{
+                        color: $white;
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*****************
+header
+*****************/
+.headerHome {
+    background-image: url(../img/header.jpg);
+    @include bgImg(center, cover, no-repeat, 80vh);
+       @media(max-width:760px){
+     @include bgImg(center, cover, no-repeat, 60vh);
+    }
+}
+/*****************
+intro
+*****************/
+.intro{
+    width: 50%;
+    margin: auto;
+    background: $primary;
+    padding: 30px 50px;
+    line-height: 1.2;
+    text-align: center;
+     margin-top: -100px;
+    @media(max-width:760px){
+        width: 80%;
+    }
+    h1{
+      color: $secondary;
+        font-size: 8rem;
+        font-family: $headings;
+        margin-top: -110px;
+        text-shadow: 3px 3px darken($primary, 20%);
+        @media(max-width:760px){
+        font-size: 4rem;
+        margin-top: -70px;
+    }
+}
+    h3{
+        color: $lightGray;
+        font-size: 2.5rem;
+        @media(max-width:760px){
+            font-size: 1.8rem;
+    }
+ }
+    p{
+        color: $lightGray;
+        font-size: 1.2rem;
+        margin-top: 20px;
+    }
+}
+/****************
+services
+****************/
+.services{
+    padding: $padding;
+    p{
+        padding: 20px 0;
+    }
+    div{
+        @include flex(space-between,flex-start, row ,wrap);
+        height: 50vh;
+        @media(max-width:760px){
+            height: auto;
+        }
+        
+        article{
+            flex: 0 0 30%;
+            padding: 30px;
+             @media(max-width:760px){
+            flex: 0 0 100%;
+        }
+            i{
+                font-size: 2.5rem;
+            }
+        }
+        article:nth-child(1){
+           background: $primary;
+            color: $white;
+          }
+         article:nth-child(2){
+            background: $secondary;
+             align-self: center;
+              h3{
+                color: $white;
+            }
+        }
+         article:nth-child(3){
+            background: $white;
+             align-self: flex-end;
+              h3{
+                color: $primary;
+            }
+        }
+    }
+}
+/************
+team
+************/
+.team{
+    padding: $padding;
+    @include flex(space-between, center, row ,wrap);
+    article:first-child{
+        flex: 0 0 48%;
+         @media(max-width:760px){
+                flex: 0 0 100%
+            }
+        p{
+            padding: 20px 0;
+        }
+        button{
+            @include btn;
+        }
+    }
+    article:last-child{
+        flex: 0 0 48%;
+        @include flex(space-between, center, row ,wrap);
+         @media(max-width:760px){
+                flex: 0 0 100%;
+             margin-top: 40px;
+            }
+        div{
+            flex: 0 0 50%;
+            img{
+                width: 80%;
+                margin-bottom: 40px;
+                border-radius: 50%;
+                box-shadow: 0 0 30px gray;
+                
+            }
+        }
+    }
+}
+/*****************
+projects
+*****************/
+.projects {
+    padding: $padding;
+    @include flex(space-between, center, row, wrap);
+    article:first-child {
+        flex: 0 0 48%;
+         @media(max-width:760px){
+                flex: 0 0 100%
+            }
+        p {
+            padding-top: 20px;
+        }
+    }
+    article:last-child {
+        flex: 0 0 48%;
+         @media(max-width:760px){
+                flex: 0 0 40%;
+             margin-top: 40px;
+            }
+        img {
+            width: 100%;
+            box-shadow: 0 0 30px gray;
+        }
+    }
+}
+.sleder{
+    background: $secondary;
+}
